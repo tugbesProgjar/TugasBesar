@@ -94,7 +94,7 @@
                       <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextField1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jTextField2" alignment="0" min="-2" pref="270" max="-2" attributes="0"/>
+                          <Component id="txtIp" alignment="0" min="-2" pref="270" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="73" max="32767" attributes="0"/>
@@ -113,7 +113,7 @@
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jTextField2" min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="txtIp" min="-2" pref="34" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Component id="jButton1" min="-2" pref="26" max="-2" attributes="0"/>
                   <EmptySpace pref="90" max="32767" attributes="0"/>
@@ -161,7 +161,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField2">
+        <Component class="javax.swing.JTextField" name="txtIp">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="cc" red="66" type="rgb"/>
