@@ -27,6 +27,7 @@ public class Server extends javax.swing.JFrame {
      * Creates new form Server
      */
     public Server() {
+        
         initComponents();
     }
 

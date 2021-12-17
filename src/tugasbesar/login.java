@@ -4,24 +4,65 @@
  * and open the template in the editor.
  */
 package tugasbesar;
-import tugasbesar.Data;
-import java.io.File;
-import java.io.FileInputStream;
+//import tugasbesar.Config;
+//import tugasbesar.Data;
+//import java.io.File;
+//import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import javax.swing.JFileChooser;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+//import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 /**
  *
  * @author Benny Irianto
  */
 public class login extends javax.swing.JFrame {
-
+    private Socket socket;
+    private ObjectInputStream input;
+    private ObjectOutputStream output;
+    private Config config = new Config();
+//    private String JOIN_STATE;
     /**
      * Creates new form dashboard
      */
     public login() {
         initComponents();
+        start();
+//        initComponents();
+    }
+    private boolean start() {
+        try {
+            socket = new Socket("localhost", config.getPort());
+        } catch (IOException ex) {
+            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            output = new ObjectOutputStream(socket.getOutputStream());
+            input = new ObjectInputStream(socket.getInputStream());
+        } catch (IOException ex) {
+            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+//        new login.ClientListenner().start();
+        return true;
+    }
+    private void stopClient() {
+        try {
+            if (input != null) {
+                input.close();
+            }
+            if (output != null) {
+                output.close();
+            }
+            if (socket != null) {
+                socket.close();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -159,21 +200,32 @@ public class login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private Socket socket;
-    private ObjectOutputStream out;
+//    private Socket socket;
+//    private ObjectOutputStream out;
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
+//        try {
+//            // TODO add your handling code here:
+//            String username = jTextField1.getText();
+//            String req = username + "~" + JOIN_STATE;
+//            output.writeObject(req);
+//            jTextField1.setEditable(false);
+//        } 
+//        catch (IOException ex) {
+//            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         try {
+            String username = jTextField1.getText();
             socket = new Socket(txtIp.getText().trim(), 9999);
-//            txt.append("Connect success ...\n");
-//            out = new ObjectOutputStream(socket.getOutputStream());
-//            Data data = new Data();
-//            data.setStatus("new");
-//            data.setName("Laing raven");
-//            out.writeObject(data);
-//            out.flush();
+//          txt.append("Connect success ...\n");
+            output = new ObjectOutputStream(socket.getOutputStream());
+            Data data = new Data();
+            data.setStatus("new");
+            data.setName("Laing raven");
+            output.writeObject(data);
+            output.flush();
             dashboard a = new dashboard();
             a. setVisible(true);
             this.dispose();
