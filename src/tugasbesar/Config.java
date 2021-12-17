@@ -17,7 +17,7 @@ public class Config {
 
     public Config() {
         try {
-            port = 55286;
+            port = 7777;
             ip = InetAddress.getLocalHost().getHostAddress().trim();
         } catch (UnknownHostException ex) {
             Logger.getLogger(Config.class.getName()).log(Level.SEVERE, null, ex);
