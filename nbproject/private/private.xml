@@ -3,18 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/D:/NetBeansProjects/TugasBesar/src/tugasbesar/login.java</file>
             <file>file:/D:/NetBeansProjects/TugasBesar/src/tugasbesar/dashboard.java</file>
-            <file>file:/D:/NetBeansProjects/TugasBesar/src/tugasbesar/chatClient.java</file>
+            <file>file:/D:/NetBeansProjects/TugasBesar/src/tugasbesar/login.java</file>
+            <file>file:/D:/NetBeansProjects/TugasBesar/src/tugasbesar/Data.java</file>
             <file>file:/D:/NetBeansProjects/TugasBesar/src/tugasbesar/Client.java</file>
-=======
-            <file>file:/E:/ella/KULIAH/semester%205/PEMJAR/tugas/TugasBesar/src/tugasbesar/Config.java</file>
-            <file>file:/E:/ella/KULIAH/semester%205/PEMJAR/tugas/TugasBesar/src/tugasbesar/login.java</file>
-            <file>file:/E:/ella/KULIAH/semester%205/PEMJAR/tugas/TugasBesar/src/tugasbesar/chatServer.java</file>
-            <file>file:/E:/ella/KULIAH/semester%205/PEMJAR/tugas/TugasBesar/src/tugasbesar/Server.java</file>
-            <file>file:/E:/ella/KULIAH/semester%205/PEMJAR/tugas/TugasBesar/src/tugasbesar/chatClient.java</file>
->>>>>>> 511343e6c193f10af49b91b038180654ee0f7e50
+            <file>file:/D:/NetBeansProjects/TugasBesar/src/tugasbesar/JavaChat.java</file>
         </group>
     </open-files>
 </project-private>
