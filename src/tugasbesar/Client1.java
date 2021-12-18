@@ -265,7 +265,7 @@ public class Client1 extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        login a = new login();
+        loginMahasiswa a = new loginMahasiswa();
         a. setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
