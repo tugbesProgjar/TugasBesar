@@ -45,7 +45,7 @@ public class Server extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txt = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        list = new javax.swing.JList<>();
+        list = new javax.swing.JList<String>();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
