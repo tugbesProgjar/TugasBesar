@@ -67,6 +67,7 @@ public class JavaChat extends javax.swing.JFrame {
             ClientList = new ArrayList<>();
             txtChatBox.setEditable(false);
             btnSend.addActionListener(new ActionListener() {
+                //koneksi agar dapat terhubung chat
                 public void actionPerformed(ActionEvent e) {
                     String s = txtChat.getText();
                     if (s.equals("") == false) {
@@ -81,11 +82,13 @@ public class JavaChat extends javax.swing.JFrame {
             });
 
             if (mode == HOST_MODE) {
+                // koneksi pada sisi admin
                 socket = new DatagramSocket(37988);
                 lbl_ip.setText("My Room IP : " + InetAddress.getLocalHost().getHostAddress());
                 lblNama.setText("Nama : "+Name);
                 send.setText("Receive");
             } else {
+                //koneksi pada sisi mahasiswa
                 socket = new DatagramSocket();
                 send.setText("Choose");
                 String reqresp = "!!^^" + Name + "^^!!";
@@ -96,6 +99,7 @@ public class JavaChat extends javax.swing.JFrame {
                 socket.setSoTimeout(6000);
                 socket.receive(pk);
                 reqresp = new String(pk.getData());
+                //menampilkan nama room dan username
                 if (reqresp.contains("!!^^")) {
                     roomname = reqresp.substring(4, reqresp.indexOf("^^!!"));
                     lbl_ip.setText("Chat Room : " + roomname);
@@ -107,6 +111,7 @@ public class JavaChat extends javax.swing.JFrame {
                     System.exit(0);
                 }
             }
+            //memanggil function messanger
             Messenger.start();
             
         } catch (Exception ex) {
@@ -115,6 +120,7 @@ public class JavaChat extends javax.swing.JFrame {
     }
     
     public void broadcast(String str) {
+        //menampilkan pesan pada chatbox sesuai login
         try {
             DatagramPacket pack = new DatagramPacket(str.getBytes(), str.length());
             for (int i = 0; i < ClientList.size(); i++) {
@@ -137,6 +143,7 @@ public class JavaChat extends javax.swing.JFrame {
         }
     }
 
+    //thread digunakan untuk menampilkan chat yang dikirim
     Thread Messenger = new Thread() {
         public void run() {
             try {
@@ -193,8 +200,6 @@ public class JavaChat extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox();
         btnSend = new javax.swing.JButton();
         txtName = new javax.swing.JTextField();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        list = new javax.swing.JList<>();
         send = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -271,13 +276,6 @@ public class JavaChat extends javax.swing.JFrame {
             }
         });
 
-        list.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                listMouseClicked(evt);
-            }
-        });
-        jScrollPane3.setViewportView(list);
-
         send.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sendActionPerformed(evt);
@@ -290,32 +288,29 @@ public class JavaChat extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(149, 149, 149))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(66, 66, 66)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtName)
-                                .addGap(30, 30, 30)
-                                .addComponent(send)
-                                .addGap(164, 164, 164))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtChat, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnSend))
                             .addComponent(lblNama)
                             .addComponent(lbl_ip)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 653, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                        .addContainerGap())))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtName))
+                                    .addComponent(txtChat, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(send)
+                                    .addComponent(btnSend))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(177, 177, 177))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,14 +322,12 @@ public class JavaChat extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblNama)
                 .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane3)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtChat, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSend))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSend, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtChat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -407,7 +400,6 @@ public class JavaChat extends javax.swing.JFrame {
 
             DatagramPacket sendPacket = new DatagramPacket(message, message.length, address, port); // data yang dikirimkan
             socket.send(sendPacket); // mengirimkan data
-//            System.out.println("Mengirim : Nomor Sequence = " + sequenceNumber);
 
             boolean ackRec; // apakah datagram diterima ?
 
@@ -421,18 +413,15 @@ public class JavaChat extends javax.swing.JFrame {
                     ackSequence = ((ack[0] & 0xff) << 8) + (ack[1] & 0xff); 
                     ackRec = true;
                 } catch (SocketTimeoutException e) {
-//                    System.out.println("Socket timed out");
                     ackRec = false; // Kita tidak menerima sebah ack
                 }
 
                 // Jika paket telah diterima dengan benar, paket selanjutnya bisa dikirimkan 
                 if ((ackSequence == sequenceNumber) && (ackRec)) {
-//                    System.out.println("Menerima Ack : Nomor Sequence = " + ackSequence);
                     break;
                 } // Paket belum diterima, jadi kita mengirim ulang
                 else {
                     socket.send(sendPacket);
-//                    System.out.println("Mengirim ulang : Nomor Sequence = " + sequenceNumber);
                 }
             }
         }
@@ -453,31 +442,6 @@ public class JavaChat extends javax.swing.JFrame {
         }
         return bArray;
     }
-//    
-//    private void open() {
-//        Data data = (Data) mod.getElementAt(list.getSelectedIndex());
-//        if (data.getStatus().equals("Image")) {
-//            ShowImage obj = new ShowImage(this, true);
-//            ImageIcon icon = new ImageIcon(data.getFile());
-//            obj.set(icon);
-//            obj.setVisible(true);
-//        }
-//    }
-//
-//    private void save() {
-//        Data data = (Data) mod.getElementAt(list.getSelectedIndex());
-//        JFileChooser ch = new JFileChooser();
-//        int c = ch.showSaveDialog(this);
-//        if (c == JFileChooser.APPROVE_OPTION) {
-//            try {
-//                FileOutputStream out = new FileOutputStream(ch.getSelectedFile());
-//                out.write(data.getFile());
-//                out.close();
-//            } catch (Exception e) {
-//                JOptionPane.showMessageDialog(this, e, "Error", JOptionPane.ERROR_MESSAGE);
-//            }
-//        }
-//    }
     
     public static void createFile (int port, String serverRoute){
         try{
@@ -527,21 +491,14 @@ public class JavaChat extends javax.swing.JFrame {
             // Jika urutan nomor yang terakhir dilihat +1, maka bernilai benar
             // Kami mendapatkan data dari pesan dan menuliskan konfirmasi bahwa sudah diterima dengan benar
             if (sequenceNumber == (foundLast + 1)) {
-
                 // mengatur urutan nomor terakhir menjadi satu-satunya yang baru saja diterima
                 foundLast = sequenceNumber;
-
                 // Menerima data dari pesan
                 System.arraycopy(message, 3, fileByteArray, 0, 1021);
-
                 // Menulis data yang telah diperoleh pada file dan mencetak urutan nomor data
                 outToFile.write(fileByteArray);
-//                System.out.println("Menerima: Nomer Sequence:" + foundLast);
-
                 sendAck(foundLast, socket, address, port);
             } else {
-//                System.out.println("Nomor Sequence lain: " + (foundLast + 1) + " tapi menerima " + sequenceNumber + ". dibuang");
-                
                 sendAck(foundLast, socket, address, port);
             }
             // Mengecek untuk datagram terakhir
@@ -588,25 +545,11 @@ public class JavaChat extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNameActionPerformed
 
-    private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
-//        if (evt.getClickCount() == 2) {
-//            if (!list.isSelectionEmpty()) {
-//                if (SwingUtilities.isLeftMouseButton(evt)) {
-//                    open();
-//                } else if (SwingUtilities.isRightMouseButton(evt)) {
-//                    save();
-//                }
-//
-//            }
-//        }
-//        // TODO add your handling code here:
-    }//GEN-LAST:event_listMouseClicked
-
     private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
         if(mode == HOST_MODE){
             System.out.println("Ready to receive!");
             int port = 1234; // portnya
-            String serverRoute = "D:\\tes\\"; // destinasi file
+            String serverRoute = "D:\\KritikSaran\\"; // destinasi file
             createFile(port, serverRoute);
         } else{
             int port = 1234;
@@ -662,10 +605,8 @@ public class JavaChat extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblNama;
     private javax.swing.JLabel lbl_ip;
-    private javax.swing.JList<String> list;
     private javax.swing.JButton send;
     private javax.swing.JTextField txtChat;
     private javax.swing.JTextArea txtChatBox;

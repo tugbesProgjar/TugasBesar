@@ -159,7 +159,7 @@ public class loginMahasiswa extends javax.swing.JFrame {
                 .addGap(106, 106, 106))
         );
 
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tugasbesar/poltek.png"))); // NOI18N
+        jLabel17.setIcon(new javax.swing.ImageIcon("D:\\NetBeansProjects\\TugasBesar\\src\\tugasbesar\\jti4.jpg")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -132,7 +132,7 @@ public class loginAdmin extends javax.swing.JFrame {
                 .addGap(129, 129, 129))
         );
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tugasbesar/poltek.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon("D:\\NetBeansProjects\\TugasBesar\\src\\tugasbesar\\jti3.png")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
