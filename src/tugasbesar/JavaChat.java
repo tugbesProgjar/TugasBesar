@@ -354,22 +354,22 @@ public class JavaChat extends javax.swing.JFrame {
             InetAddress address = InetAddress.getByName(host);
             String fileName;
 
-            JFileChooser jfc = new JFileChooser();
-            jfc.setFileSelectionMode(JFileChooser.FILES_ONLY); 
-            if (jfc.isMultiSelectionEnabled()) { 
+            JFileChooser jfc = new JFileChooser(); // Memilih file yang dikirim
+            jfc.setFileSelectionMode(JFileChooser.FILES_ONLY); // Hanya files yang bisa dipilih (bukan direktori)
+            if (jfc.isMultiSelectionEnabled()) { // Hanya satu file dalam sekali waktu (tidak ada beberapa pilihan)
                 jfc.setMultiSelectionEnabled(false);
             }
 
             int r = jfc.showOpenDialog(null);
-            if (r == JFileChooser.APPROVE_OPTION) { 
+            if (r == JFileChooser.APPROVE_OPTION) { // jika sebuah file dipilih
                 File f = jfc.getSelectedFile();
                 fileName = f.getName();
-                byte[] fileNameBytes = fileName.getBytes();
+                byte[] fileNameBytes = fileName.getBytes(); // nama file sebagai bytes untuk mengirimkan
                 DatagramPacket fileStatPacket = new DatagramPacket(fileNameBytes, fileNameBytes.length, address, port); 
                 socket.send(fileStatPacket); 
 
-                byte[] fileByteArray = readFileToByteArray(f); 
-                sendFile(socket, fileByteArray, address, port); 
+                byte[] fileByteArray = readFileToByteArray(f); // Array dari bytes files yang dibuat
+                sendFile(socket, fileByteArray, address, port); // Memasukkan method untuk mengirim file sebenarnya
             }
             socket.close();
         } catch (Exception ex) {
@@ -380,23 +380,23 @@ public class JavaChat extends javax.swing.JFrame {
 
     private void sendFile(DatagramSocket socket, byte[] fileByteArray, InetAddress address, int port) throws IOException {
         System.out.println("Mengirim file");
-        int sequenceNumber = 0;
-        boolean flag;
-        int ackSequence = 0;
+        int sequenceNumber = 0; // untuk urutan
+        boolean flag; // untuk melihat jika kita mendapatkan akhir dari file
+        int ackSequence = 0; // untuk melihat jika datagram telah diterima dengan benar
 
         for (int i = 0; i < fileByteArray.length; i = i + 1021) {
             sequenceNumber += 1;
 
-            byte[] message = new byte[1024]; 
+            byte[] message = new byte[1024]; // dua bytes pertama data untuk mengontrol (integritas datagram dn urutan)
             message[0] = (byte) (sequenceNumber >> 8);
             message[1] = (byte) (sequenceNumber);
 
             if ((i + 1021) >= fileByteArray.length) {
                 flag = true;
-                message[2] = (byte) (1); 
+                message[2] = (byte) (1); // Mencapai akhir dari file (datagram terakhir untuk dikirimkan) 
             } else {
                 flag = false;
-                message[2] = (byte) (0); 
+                message[2] = (byte) (0); // Belum mencapai akhir dari file, mssih mengirim datagrams
             }
 
             if (!flag) {
@@ -405,30 +405,31 @@ public class JavaChat extends javax.swing.JFrame {
                 System.arraycopy(fileByteArray, i, message, 3, fileByteArray.length - i);
             }
 
-            DatagramPacket sendPacket = new DatagramPacket(message, message.length, address, port);
-            socket.send(sendPacket);
+            DatagramPacket sendPacket = new DatagramPacket(message, message.length, address, port); // data yang dikirimkan
+            socket.send(sendPacket); // mengirimkan data
 //            System.out.println("Mengirim : Nomor Sequence = " + sequenceNumber);
 
-            boolean ackRec;
+            boolean ackRec; // apakah datagram diterima ?
 
             while (true) {
-                byte[] ack = new byte[2];
+                byte[] ack = new byte[2]; // membuat paket datagram lainnya
                 DatagramPacket ackpack = new DatagramPacket(ack, ack.length);
 
                 try {
-                    socket.setSoTimeout(50);
+                    socket.setSoTimeout(50); // Menunggu server untuk mengirim ack
                     socket.receive(ackpack);
                     ackSequence = ((ack[0] & 0xff) << 8) + (ack[1] & 0xff); 
                     ackRec = true;
                 } catch (SocketTimeoutException e) {
 //                    System.out.println("Socket timed out");
-                    ackRec = false; 
+                    ackRec = false; // Kita tidak menerima sebah ack
                 }
 
+                // Jika paket telah diterima dengan benar, paket selanjutnya bisa dikirimkan 
                 if ((ackSequence == sequenceNumber) && (ackRec)) {
 //                    System.out.println("Menerima Ack : Nomor Sequence = " + ackSequence);
                     break;
-                } 
+                } // Paket belum diterima, jadi kita mengirim ulang
                 else {
                     socket.send(sendPacket);
 //                    System.out.println("Mengirim ulang : Nomor Sequence = " + sequenceNumber);
@@ -439,8 +440,8 @@ public class JavaChat extends javax.swing.JFrame {
   
     private static byte[] readFileToByteArray(File file) {
         FileInputStream fis = null;
-        // Creating a byte array using the length of the file
-        // file.length returns long which is cast to int
+        // Membuat sebuah byte array menggunakan panjang dari file
+        // file.length mengembalikan panjang dimana cast ke int
         byte[] bArray = new byte[(int) file.length()];
         try {
             fis = new FileInputStream(file);
@@ -481,18 +482,18 @@ public class JavaChat extends javax.swing.JFrame {
     public static void createFile (int port, String serverRoute){
         try{
             DatagramSocket socket = new DatagramSocket(port);
-            byte[] receiveFileName = new byte[1024]; 
+            byte[] receiveFileName = new byte[1024]; //Menyimpan data dari nama datagram
             DatagramPacket receiveFileNamePacket = new DatagramPacket(receiveFileName, receiveFileName.length);
-            socket.receive(receiveFileNamePacket);
+            socket.receive(receiveFileNamePacket); // Menerima datagram dengan nama file
             System.out.println("Menerima nama file");
-            byte [] data = receiveFileNamePacket.getData();
-            String fileName = new String(data, 0, receiveFileNamePacket.getLength());
+            byte [] data = receiveFileNamePacket.getData(); // Membaca nama dalam bytes
+            String fileName = new String(data, 0, receiveFileNamePacket.getLength()); //Mengkonversi nama ke dalam string
             
             System.out.println("Membuat file");
-            File f = new File (serverRoute + "\\" + fileName);
-            FileOutputStream outToFile = new FileOutputStream(f); 
+            File f = new File (serverRoute + "\\" + fileName); // Membuat file
+            FileOutputStream outToFile = new FileOutputStream(f); // Membuat stream melalui konten file yang telah ditulis
             
-            receiveFile(outToFile, socket);
+            receiveFile(outToFile, socket); // Menerima file
             socket.close();
         }catch(Exception ex){
             ex.printStackTrace();
@@ -503,29 +504,37 @@ public class JavaChat extends javax.swing.JFrame {
     private static void receiveFile(FileOutputStream outToFile, DatagramSocket socket) throws IOException {
         System.out.println("Menerima file");
         boolean flag;
-        int sequenceNumber = 0;
-        int foundLast = 0;
+        int sequenceNumber = 0; // Urutan sequences
+        int foundLast = 0; // sequence terakhir yang ditemukan
         
         while (true) {
-            byte[] message = new byte[1024];
-            byte[] fileByteArray = new byte[1021];
+            byte[] message = new byte[1024]; // Dimana data dari datagram yang diterima disimpan
+            byte[] fileByteArray = new byte[1021]; // Dimana kita menyimpan data untuk ditulis pada file
 
             DatagramPacket receivedPacket = new DatagramPacket(message, message.length);
             socket.receive(receivedPacket);
-            message = receivedPacket.getData(); 
+            message = receivedPacket.getData(); // Data yang ditulis pada file
 
+            // Mendapatkan port dan address 
             InetAddress address = receivedPacket.getAddress();
             int port = receivedPacket.getPort();
 
+            //memperoleh sequence number
             sequenceNumber = ((message[0] & 0xff) << 8) + (message[1] & 0xff);
+            // Mengecek jika kita telah mencapai datagram terakhir
             flag = (message[2] & 0xff) == 1;
             
+            // Jika urutan nomor yang terakhir dilihat +1, maka bernilai benar
+            // Kami mendapatkan data dari pesan dan menuliskan konfirmasi bahwa sudah diterima dengan benar
             if (sequenceNumber == (foundLast + 1)) {
 
+                // mengatur urutan nomor terakhir menjadi satu-satunya yang baru saja diterima
                 foundLast = sequenceNumber;
 
+                // Menerima data dari pesan
                 System.arraycopy(message, 3, fileByteArray, 0, 1021);
 
+                // Menulis data yang telah diperoleh pada file dan mencetak urutan nomor data
                 outToFile.write(fileByteArray);
 //                System.out.println("Menerima: Nomer Sequence:" + foundLast);
 
@@ -535,6 +544,7 @@ public class JavaChat extends javax.swing.JFrame {
                 
                 sendAck(foundLast, socket, address, port);
             }
+            // Mengecek untuk datagram terakhir
             if (flag) {
                 outToFile.close();
                 break;
@@ -548,6 +558,7 @@ public class JavaChat extends javax.swing.JFrame {
         ackPacket[0] = (byte) (foundLast >> 8);
         ackPacket[1] = (byte) (foundLast);
 
+        // datagram paket dikirimkan
         DatagramPacket acknowledgement = new DatagramPacket(ackPacket, ackPacket.length, address, port);
         socket.send(acknowledgement);
 //        System.out.println("Ack: Nomor Sequence = " + foundLast);

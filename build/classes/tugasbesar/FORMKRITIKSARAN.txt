@@ -1,5 +1,4 @@
-BERIKAN KRITIKMU MELALUI FORM INI
-===================================
+BERIKAN KRITIKMU MELALUI FORM INI.
 NAMA :
 NIM :
 JURUSAN :
@@ -7,6 +6,5 @@ PRODI :
 KELAS :
 KRITIK :
 SARAN :
-===================================
 TERIMAKASIH TELAH BERPARTISIPASI !
 SALAM POLINEMA!
