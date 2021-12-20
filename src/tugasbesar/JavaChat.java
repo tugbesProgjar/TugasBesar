@@ -193,6 +193,8 @@ public class JavaChat extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox();
         btnSend = new javax.swing.JButton();
         txtName = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        list = new javax.swing.JList<>();
         send = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -213,10 +215,10 @@ public class JavaChat extends javax.swing.JFrame {
         lbl_ip.setText("My Room IP :");
 
         lblNama.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblNama.setText("Username    :");
+        lblNama.setText("Nama : ");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Berikan Kritik dan Saranmu");
+        jLabel1.setText("Kritik dan Saran Polinema");
 
         jPanel1.setBackground(new java.awt.Color(153, 204, 255));
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(153, 204, 255), null, null));
@@ -269,6 +271,13 @@ public class JavaChat extends javax.swing.JFrame {
             }
         });
 
+        list.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(list);
+
         send.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sendActionPerformed(evt);
@@ -281,55 +290,56 @@ public class JavaChat extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(149, 149, 149))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(66, 66, 66)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtName)
+                                .addGap(30, 30, 30)
+                                .addComponent(send)
+                                .addGap(164, 164, 164))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtChat, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnSend))
                             .addComponent(lblNama)
                             .addComponent(lbl_ip)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtName))
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtChat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnSend)
-                                    .addComponent(send))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(201, 201, 201)
-                        .addComponent(jLabel1)
-                        .addGap(0, 220, Short.MAX_VALUE))))
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(33, 33, 33)
+                .addGap(19, 19, 19)
                 .addComponent(lbl_ip)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblNama)
-                .addGap(28, 28, 28)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtChat, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSend))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtName)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(17, 17, 17))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(send)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(send))
+                .addContainerGap())
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -344,22 +354,22 @@ public class JavaChat extends javax.swing.JFrame {
             InetAddress address = InetAddress.getByName(host);
             String fileName;
 
-            JFileChooser jfc = new JFileChooser();
-            jfc.setFileSelectionMode(JFileChooser.FILES_ONLY); 
-            if (jfc.isMultiSelectionEnabled()) { 
+            JFileChooser jfc = new JFileChooser(); // Memilih file yang dikirim
+            jfc.setFileSelectionMode(JFileChooser.FILES_ONLY); // Hanya files yang bisa dipilih (bukan direktori)
+            if (jfc.isMultiSelectionEnabled()) { // Hanya satu file dalam sekali waktu (tidak ada beberapa pilihan)
                 jfc.setMultiSelectionEnabled(false);
             }
 
             int r = jfc.showOpenDialog(null);
-            if (r == JFileChooser.APPROVE_OPTION) { 
+            if (r == JFileChooser.APPROVE_OPTION) { // jika sebuah file dipilih
                 File f = jfc.getSelectedFile();
                 fileName = f.getName();
-                byte[] fileNameBytes = fileName.getBytes();
+                byte[] fileNameBytes = fileName.getBytes(); // nama file sebagai bytes untuk mengirimkan
                 DatagramPacket fileStatPacket = new DatagramPacket(fileNameBytes, fileNameBytes.length, address, port); 
                 socket.send(fileStatPacket); 
 
-                byte[] fileByteArray = readFileToByteArray(f); 
-                sendFile(socket, fileByteArray, address, port); 
+                byte[] fileByteArray = readFileToByteArray(f); // Array dari bytes files yang dibuat
+                sendFile(socket, fileByteArray, address, port); // Memasukkan method untuk mengirim file sebenarnya
             }
             socket.close();
         } catch (Exception ex) {
@@ -370,23 +380,23 @@ public class JavaChat extends javax.swing.JFrame {
 
     private void sendFile(DatagramSocket socket, byte[] fileByteArray, InetAddress address, int port) throws IOException {
         System.out.println("Mengirim file");
-        int sequenceNumber = 0;
-        boolean flag;
-        int ackSequence = 0;
+        int sequenceNumber = 0; // untuk urutan
+        boolean flag; // untuk melihat jika kita mendapatkan akhir dari file
+        int ackSequence = 0; // untuk melihat jika datagram telah diterima dengan benar
 
         for (int i = 0; i < fileByteArray.length; i = i + 1021) {
             sequenceNumber += 1;
 
-            byte[] message = new byte[1024]; 
+            byte[] message = new byte[1024]; // dua bytes pertama data untuk mengontrol (integritas datagram dn urutan)
             message[0] = (byte) (sequenceNumber >> 8);
             message[1] = (byte) (sequenceNumber);
 
             if ((i + 1021) >= fileByteArray.length) {
                 flag = true;
-                message[2] = (byte) (1); 
+                message[2] = (byte) (1); // Mencapai akhir dari file (datagram terakhir untuk dikirimkan) 
             } else {
                 flag = false;
-                message[2] = (byte) (0); 
+                message[2] = (byte) (0); // Belum mencapai akhir dari file, mssih mengirim datagrams
             }
 
             if (!flag) {
@@ -395,65 +405,95 @@ public class JavaChat extends javax.swing.JFrame {
                 System.arraycopy(fileByteArray, i, message, 3, fileByteArray.length - i);
             }
 
-            DatagramPacket sendPacket = new DatagramPacket(message, message.length, address, port);
-            socket.send(sendPacket);
+            DatagramPacket sendPacket = new DatagramPacket(message, message.length, address, port); // data yang dikirimkan
+            socket.send(sendPacket); // mengirimkan data
+//            System.out.println("Mengirim : Nomor Sequence = " + sequenceNumber);
 
-            boolean ackRec;
+            boolean ackRec; // apakah datagram diterima ?
 
             while (true) {
-                byte[] ack = new byte[2];
+                byte[] ack = new byte[2]; // membuat paket datagram lainnya
                 DatagramPacket ackpack = new DatagramPacket(ack, ack.length);
 
                 try {
-                    socket.setSoTimeout(50);
+                    socket.setSoTimeout(50); // Menunggu server untuk mengirim ack
                     socket.receive(ackpack);
                     ackSequence = ((ack[0] & 0xff) << 8) + (ack[1] & 0xff); 
                     ackRec = true;
                 } catch (SocketTimeoutException e) {
-                    ackRec = false; 
+//                    System.out.println("Socket timed out");
+                    ackRec = false; // Kita tidak menerima sebah ack
                 }
 
+                // Jika paket telah diterima dengan benar, paket selanjutnya bisa dikirimkan 
                 if ((ackSequence == sequenceNumber) && (ackRec)) {
+//                    System.out.println("Menerima Ack : Nomor Sequence = " + ackSequence);
                     break;
-                } 
+                } // Paket belum diterima, jadi kita mengirim ulang
                 else {
                     socket.send(sendPacket);
+//                    System.out.println("Mengirim ulang : Nomor Sequence = " + sequenceNumber);
                 }
             }
         }
     }
   
     private static byte[] readFileToByteArray(File file) {
-        FileInputStream input = null;
-        // Creating a byte array using the length of the file
-        // file.length returns long which is cast to int
+        FileInputStream fis = null;
+        // Membuat sebuah byte array menggunakan panjang dari file
+        // file.length mengembalikan panjang dimana cast ke int
         byte[] bArray = new byte[(int) file.length()];
         try {
-            input = new FileInputStream(file);
-            input.read(bArray);
-            input.close();
+            fis = new FileInputStream(file);
+            fis.read(bArray);
+            fis.close();
 
         } catch (IOException ioExp) {
             ioExp.printStackTrace();
         }
         return bArray;
     }
+//    
+//    private void open() {
+//        Data data = (Data) mod.getElementAt(list.getSelectedIndex());
+//        if (data.getStatus().equals("Image")) {
+//            ShowImage obj = new ShowImage(this, true);
+//            ImageIcon icon = new ImageIcon(data.getFile());
+//            obj.set(icon);
+//            obj.setVisible(true);
+//        }
+//    }
+//
+//    private void save() {
+//        Data data = (Data) mod.getElementAt(list.getSelectedIndex());
+//        JFileChooser ch = new JFileChooser();
+//        int c = ch.showSaveDialog(this);
+//        if (c == JFileChooser.APPROVE_OPTION) {
+//            try {
+//                FileOutputStream out = new FileOutputStream(ch.getSelectedFile());
+//                out.write(data.getFile());
+//                out.close();
+//            } catch (Exception e) {
+//                JOptionPane.showMessageDialog(this, e, "Error", JOptionPane.ERROR_MESSAGE);
+//            }
+//        }
+//    }
     
     public static void createFile (int port, String serverRoute){
         try{
             DatagramSocket socket = new DatagramSocket(port);
-            byte[] receiveFileName = new byte[1024]; 
+            byte[] receiveFileName = new byte[1024]; //Menyimpan data dari nama datagram
             DatagramPacket receiveFileNamePacket = new DatagramPacket(receiveFileName, receiveFileName.length);
-            socket.receive(receiveFileNamePacket);
+            socket.receive(receiveFileNamePacket); // Menerima datagram dengan nama file
             System.out.println("Menerima nama file");
-            byte [] data = receiveFileNamePacket.getData();
-            String fileName = new String(data, 0, receiveFileNamePacket.getLength());
+            byte [] data = receiveFileNamePacket.getData(); // Membaca nama dalam bytes
+            String fileName = new String(data, 0, receiveFileNamePacket.getLength()); //Mengkonversi nama ke dalam string
             
             System.out.println("Membuat file");
-            File f = new File (serverRoute + "\\" + fileName);
-            FileOutputStream outToFile = new FileOutputStream(f); 
+            File f = new File (serverRoute + "\\" + fileName); // Membuat file
+            FileOutputStream outToFile = new FileOutputStream(f); // Membuat stream melalui konten file yang telah ditulis
             
-            receiveFile(outToFile, socket);
+            receiveFile(outToFile, socket); // Menerima file
             socket.close();
         }catch(Exception ex){
             ex.printStackTrace();
@@ -464,31 +504,47 @@ public class JavaChat extends javax.swing.JFrame {
     private static void receiveFile(FileOutputStream outToFile, DatagramSocket socket) throws IOException {
         System.out.println("Menerima file");
         boolean flag;
-        int sequenceNumber = 0;
-        int foundLast = 0;
+        int sequenceNumber = 0; // Urutan sequences
+        int foundLast = 0; // sequence terakhir yang ditemukan
         
         while (true) {
-            byte[] message = new byte[1024];
-            byte[] fileByteArray = new byte[1021];
+            byte[] message = new byte[1024]; // Dimana data dari datagram yang diterima disimpan
+            byte[] fileByteArray = new byte[1021]; // Dimana kita menyimpan data untuk ditulis pada file
 
             DatagramPacket receivedPacket = new DatagramPacket(message, message.length);
             socket.receive(receivedPacket);
-            message = receivedPacket.getData(); 
+            message = receivedPacket.getData(); // Data yang ditulis pada file
 
+            // Mendapatkan port dan address 
             InetAddress address = receivedPacket.getAddress();
             int port = receivedPacket.getPort();
 
+            //memperoleh sequence number
             sequenceNumber = ((message[0] & 0xff) << 8) + (message[1] & 0xff);
+            // Mengecek jika kita telah mencapai datagram terakhir
             flag = (message[2] & 0xff) == 1;
             
+            // Jika urutan nomor yang terakhir dilihat +1, maka bernilai benar
+            // Kami mendapatkan data dari pesan dan menuliskan konfirmasi bahwa sudah diterima dengan benar
             if (sequenceNumber == (foundLast + 1)) {
+
+                // mengatur urutan nomor terakhir menjadi satu-satunya yang baru saja diterima
                 foundLast = sequenceNumber;
+
+                // Menerima data dari pesan
                 System.arraycopy(message, 3, fileByteArray, 0, 1021);
+
+                // Menulis data yang telah diperoleh pada file dan mencetak urutan nomor data
                 outToFile.write(fileByteArray);
+//                System.out.println("Menerima: Nomer Sequence:" + foundLast);
+
                 sendAck(foundLast, socket, address, port);
             } else {
+//                System.out.println("Nomor Sequence lain: " + (foundLast + 1) + " tapi menerima " + sequenceNumber + ". dibuang");
+                
                 sendAck(foundLast, socket, address, port);
             }
+            // Mengecek untuk datagram terakhir
             if (flag) {
                 outToFile.close();
                 break;
@@ -502,8 +558,10 @@ public class JavaChat extends javax.swing.JFrame {
         ackPacket[0] = (byte) (foundLast >> 8);
         ackPacket[1] = (byte) (foundLast);
 
+        // datagram paket dikirimkan
         DatagramPacket acknowledgement = new DatagramPacket(ackPacket, ackPacket.length, address, port);
         socket.send(acknowledgement);
+//        System.out.println("Ack: Nomor Sequence = " + foundLast);
     }
     
     private void txtChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtChatActionPerformed
@@ -523,25 +581,38 @@ public class JavaChat extends javax.swing.JFrame {
 
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnSendActionPerformed
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNameActionPerformed
 
+    private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
+//        if (evt.getClickCount() == 2) {
+//            if (!list.isSelectionEmpty()) {
+//                if (SwingUtilities.isLeftMouseButton(evt)) {
+//                    open();
+//                } else if (SwingUtilities.isRightMouseButton(evt)) {
+//                    save();
+//                }
+//
+//            }
+//        }
+//        // TODO add your handling code here:
+    }//GEN-LAST:event_listMouseClicked
+
     private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
         if(mode == HOST_MODE){
             System.out.println("Ready to receive!");
             int port = 1234; // portnya
-            String serverRoute = "D:\\KritikSaran\\"; // destinasi file
+            String serverRoute = "D:\\tes\\"; // destinasi file
             createFile(port, serverRoute);
-            txtChatBox.append("\nget 1 file ... \n");
         } else{
             int port = 1234;
-            String host = "127.0.0.1"; // local host bisa diubah
+            String host = ipAddress; // local host bisa diubah
             JavaChat chat = new JavaChat();
             chat.ready(port, host);  
-            txtChatBox.append("\nsend 1 file ... \n");
         }
 
     }//GEN-LAST:event_sendActionPerformed
@@ -591,8 +662,10 @@ public class JavaChat extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblNama;
     private javax.swing.JLabel lbl_ip;
+    private javax.swing.JList<String> list;
     private javax.swing.JButton send;
     private javax.swing.JTextField txtChat;
     private javax.swing.JTextArea txtChatBox;
