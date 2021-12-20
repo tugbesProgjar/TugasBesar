@@ -26,6 +26,7 @@ ADMIN KLIK RECEIVE UNTUK GET FILE
 ![image](https://user-images.githubusercontent.com/64577718/146683777-8f4c53e6-1785-4ff6-89df-5b7db06840ca.png)
 OUTPUT
 ![image](https://user-images.githubusercontent.com/64577718/146683790-a1a22d31-ac5c-4421-b3c2-643f59d80226.png)
+![image](https://user-images.githubusercontent.com/64577718/146684877-0e2df97a-9e58-487d-a009-34f63192fd7d.png)
 MAHASISWA UPLOAD FILE
 ![image](https://user-images.githubusercontent.com/64577718/146683803-2875e234-34eb-4835-9161-f66e5d85f515.png)
 ![image](https://user-images.githubusercontent.com/64577718/146683830-7f3e77f0-366e-44cb-995a-31cab0224660.png)
@@ -33,4 +34,5 @@ MAHASISWA UPLOAD FILE
 ADMIN NOTIF
 ![image](https://user-images.githubusercontent.com/64577718/146683855-b77d8a6e-8108-46e1-ba3f-1b5a361f2055.png)
 OUTPUT BERHASIL TERIMA FILE
-![image](https://user-images.githubusercontent.com/64577718/146683895-342e297e-c80a-4328-97ef-f922e208b01a.png)
+![image](https://user-images.githubusercontent.com/64577718/146684925-fc1143b5-ce56-4a06-ae2c-cae5ff1e2669.png)
+![image](https://user-images.githubusercontent.com/64577718/146685222-9d46d227-12a1-409b-8f0e-b1515133cdb7.png)
