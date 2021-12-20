@@ -49,7 +49,7 @@ public class loginAdmin extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Nama");
+        jLabel1.setText("Username");
 
         lblNama.setBackground(new java.awt.Color(102, 204, 255));
         lblNama.setForeground(new java.awt.Color(255, 255, 255));
@@ -57,7 +57,7 @@ public class loginAdmin extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Selamat Datang Di Aplikasi");
+        jLabel3.setText("Selamat Datang di Aplikasi");
 
         jLabel6.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -84,7 +84,7 @@ public class loginAdmin extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Nama Room");
+        jLabel2.setText("Room Name");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -106,7 +106,11 @@ public class loginAdmin extends javax.swing.JFrame {
                         .addComponent(jLabel2)))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+<<<<<<< HEAD
                 .addContainerGap(124, Short.MAX_VALUE)
+=======
+                .addContainerGap(119, Short.MAX_VALUE)
+>>>>>>> 15f52c217953828e024691bb33f8c52ef3ed88b5
                 .addComponent(jLabel3)
                 .addGap(115, 115, 115))
         );
@@ -132,7 +136,7 @@ public class loginAdmin extends javax.swing.JFrame {
                 .addGap(129, 129, 129))
         );
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tugasbesar/poltek.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon("D:\\NetBeansProjects\\TugasBesar\\src\\tugasbesar\\jti4.jpg")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
