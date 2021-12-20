@@ -397,7 +397,6 @@ public class JavaChat extends javax.swing.JFrame {
 
             DatagramPacket sendPacket = new DatagramPacket(message, message.length, address, port);
             socket.send(sendPacket);
-            System.out.println("Mengirim : Nomor Sequence = " + sequenceNumber);
 
             boolean ackRec;
 
@@ -411,17 +410,14 @@ public class JavaChat extends javax.swing.JFrame {
                     ackSequence = ((ack[0] & 0xff) << 8) + (ack[1] & 0xff); 
                     ackRec = true;
                 } catch (SocketTimeoutException e) {
-                    System.out.println("Socket timed out");
                     ackRec = false; 
                 }
 
                 if ((ackSequence == sequenceNumber) && (ackRec)) {
-                    System.out.println("Menerima Ack : Nomor Sequence = " + ackSequence);
                     break;
                 } 
                 else {
                     socket.send(sendPacket);
-                    System.out.println("Mengirim ulang : Nomor Sequence = " + sequenceNumber);
                 }
             }
         }
@@ -486,18 +482,11 @@ public class JavaChat extends javax.swing.JFrame {
             flag = (message[2] & 0xff) == 1;
             
             if (sequenceNumber == (foundLast + 1)) {
-
                 foundLast = sequenceNumber;
-
                 System.arraycopy(message, 3, fileByteArray, 0, 1021);
-
                 outToFile.write(fileByteArray);
-                System.out.println("Menerima: Nomer Sequence:" + foundLast);
-
                 sendAck(foundLast, socket, address, port);
             } else {
-                System.out.println("Nomor Sequence lain: " + (foundLast + 1) + " tapi menerima " + sequenceNumber + ". dibuang");
-                
                 sendAck(foundLast, socket, address, port);
             }
             if (flag) {
@@ -515,7 +504,6 @@ public class JavaChat extends javax.swing.JFrame {
 
         DatagramPacket acknowledgement = new DatagramPacket(ackPacket, ackPacket.length, address, port);
         socket.send(acknowledgement);
-        System.out.println("Ack: Nomor Sequence = " + foundLast);
     }
     
     private void txtChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtChatActionPerformed
