@@ -551,11 +551,13 @@ public class JavaChat extends javax.swing.JFrame {
             int port = 1234; // portnya
             String serverRoute = "D:\\KritikSaran\\"; // destinasi file
             createFile(port, serverRoute);
+            txtChatBox.append("get 1 file .. \n");
         } else{
             int port = 1234;
             String host = ipAddress; // local host bisa diubah
             JavaChat chat = new JavaChat();
-            chat.ready(port, host);  
+            chat.ready(port, host);
+            txtChatBox.append("send 1 file .. \n");
         }
 
     }//GEN-LAST:event_sendActionPerformed
